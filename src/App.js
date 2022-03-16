@@ -48,7 +48,7 @@ function App() {
         console.log("index : ", index);
 
         //return the player if the Square hasn't already been chosen
-        if (index == square && val === "") {
+        if (index === square && val === "") {
           console.log("player : ", player);
           return player;
         }
@@ -80,7 +80,7 @@ function App() {
   var checkIfTie = () => {
     let filled = true;
     board.forEach((square) => {
-      if (square == "") {
+      if (square === "") {
         filled = false;
       }
     });
