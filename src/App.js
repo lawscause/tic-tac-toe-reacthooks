@@ -1,6 +1,7 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Square from "./Components/Square";
+import { Patterns } from "./Components/Patterns";
 
 function App() {
   //create the state to store the tic-tac-toe board
@@ -16,10 +17,30 @@ function App() {
   //Player X gets to go first
   const [player, setPlayer] = useState(Ecks);
 
+  const [result, setResult] = useState({ winner: "none", state: "none" });
+
+  useEffect(() => {
+    checkForWinner();
+    checkIfTie();
+    //if it was Ecks' turn change it to Owh's turn
+    if (player === Ecks) {
+      setPlayer(Owh);
+    } else {
+      setPlayer(Ecks);
+    }
+  }, [board]);
+
+  useEffect(() => {
+    if (result.state !== "none") {
+      alert(`Game Finished! Winning Player: ${result.winner}`);
+      restartGame();
+    }
+  }, [result]);
+
   //when a player chooses the square have it play either an X or an O
   //based on whose turn it is. Don't allow a square to be changed if
   //it has been previously chosen
-  const chooseSquare = (square) => {
+  var chooseSquare = (square) => {
     console.log("square : ", square);
     setBoard(
       board.map((val, index) => {
@@ -27,7 +48,7 @@ function App() {
         console.log("index : ", index);
 
         //return the player if the Square hasn't already been chosen
-        if (index == square && val == "") {
+        if (index == square && val === "") {
           console.log("player : ", player);
           return player;
         }
@@ -35,13 +56,43 @@ function App() {
         return val;
       })
     );
+  };
 
-    //if it was Ecks' turn change it to Owh's turn
-    if (player == Ecks) {
-      setPlayer(Owh);
-    } else {
-      setPlayer(Ecks);
+  var checkForWinner = () => {
+    Patterns.forEach((currentPattern) => {
+      const firstPlayer = board[currentPattern[0]];
+      //if no one has played a turn not a winner.
+      if (firstPlayer === "") return;
+
+      let foundWinningPattern = true;
+      currentPattern.forEach((index) => {
+        if (board[index] !== firstPlayer) {
+          foundWinningPattern = false;
+        }
+      });
+
+      if (foundWinningPattern) {
+        setResult({ winner: player, state: "won" });
+      }
+    });
+  };
+
+  var checkIfTie = () => {
+    let filled = true;
+    board.forEach((square) => {
+      if (square == "") {
+        filled = false;
+      }
+    });
+
+    if (filled) {
+      setResult({ winner: "No one", state: "Tie" });
     }
+  };
+
+  const restartGame = () => {
+    setBoard(["", "", "", "", "", "", "", "", ""]);
+    setPlayer(Ecks);
   };
 
   return (
