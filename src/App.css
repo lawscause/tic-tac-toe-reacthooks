@@ -1,0 +1,21 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.board {
+  width: 500px;
+  height: 500px;
+  background-color: lightblue;
+  border: 1px solid black;
+  display: flex;
+  flex: column;
+}
