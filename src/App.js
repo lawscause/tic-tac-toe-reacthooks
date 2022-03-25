@@ -124,10 +124,7 @@ function App() {
   */
   return (
     <div className="App">
-      <div>
-        <button id="btnRestart" onClick={restartGame}></button>
-      </div>
-      <br />
+      <h1>Tic Tac Toe</h1>
       <br />
       <div className="board">
         <div className="row">
