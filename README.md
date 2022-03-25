@@ -1,22 +1,31 @@
 # tic-tac-toe-reacthooks
-The starter tutorial for React found [here](https://reactjs.org/tutorial/tutorial.html) is a Tic Tac Toe game.  The example is done using Class Components.
+
+The starter tutorial for React found [here](https://reactjs.org/tutorial/tutorial.html) is a Tic Tac Toe game. The example is done using Class Components.
 As of 16.8 Hooks were introduced.
 [Here](https://www.youtube.com/watch?v=3P8orW_DeEw) is an example of doing the Tic Tac Toe game with Function Components and React Hooks.
 Annotated code for this example can be found [here](https://github.com/lawscause/tic-tac-toe-reacthooks)
-A running version of the site can be found [here]() 
+A running version of the site can be found [here](https://lawscause.github.io/tic-tac-toe-reacthooks/)
 
-This example requires knowledge of the following topics:
+##This example requires knowledge of the following topics:
 https://www.w3schools.com/react/react_intro.asp
-https://www.w3schools.com/react/react_es6.asp
-https://www.w3schools.com/react/react_render.asp
-https://www.w3schools.com/react/react_jsx.asp
-https://www.w3schools.com/react/react_components.asp
-https://www.w3schools.com/react/react_props.asp
-https://www.w3schools.com/react/react_events.asp
-https://www.w3schools.com/react/react_hooks.asp
-https://www.w3schools.com/react/react_usestate.asp
-https://www.w3schools.com/react/react_useeffect.asp
 
+https://www.w3schools.com/react/react_es6.asp
+
+https://www.w3schools.com/react/react_render.asp
+
+https://www.w3schools.com/react/react_jsx.asp
+
+https://www.w3schools.com/react/react_components.asp
+
+https://www.w3schools.com/react/react_props.asp
+
+https://www.w3schools.com/react/react_events.asp
+
+https://www.w3schools.com/react/react_hooks.asp
+
+https://www.w3schools.com/react/react_usestate.asp
+
+https://www.w3schools.com/react/react_useeffect.asp
 
 Plays the game of tic tac toe. Developed in react using hooks.
 
