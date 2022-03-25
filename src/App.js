@@ -1,15 +1,13 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import Square from "./Components/Square";
-import { Patterns } from "./Components/Patterns";
+import Square from "./components/Square";
+import { Patterns } from "./components/Patterns";
 
 function App() {
   //create the state to store the tic-tac-toe board
   //begin with an empty board, which will be represented by
   //an array of nine which are all initially blank
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
-  //const [r0c0, r0c1, r0c2, r1c0, r1c1, r1c2, r2c0, r2c1, r2c2] = board;
-
   //
   const Ecks = "X";
   const Owh = "O";
@@ -19,9 +17,25 @@ function App() {
 
   const [result, setResult] = useState({ winner: "none", state: "none" });
 
+  /* 
+    When the result changes if its property state isn't none then the game is finished.
+    show the alert message with the winner info, then restart the game.
+  */
   useEffect(() => {
-    checkForWinner();
+    if (result.state !== "none") {
+      alert(`Game Finished! Winning Player: ${result.winner}`);
+      restartGame();
+    }
+  }, [result]);
+
+  /*
+  when the board changes first check to see, if we have a tie.
+  If there is no tie, check to see if there is a winner.
+  if neither has occured changed whose turn it is by changing the player.
+  */
+  useEffect(() => {
     checkIfTie();
+    checkForWinner();
     //if it was Ecks' turn change it to Owh's turn
     if (player === Ecks) {
       setPlayer(Owh);
@@ -29,13 +43,6 @@ function App() {
       setPlayer(Ecks);
     }
   }, [board]);
-
-  useEffect(() => {
-    if (result.state !== "none") {
-      alert(`Game Finished! Winning Player: ${result.winner}`);
-      restartGame();
-    }
-  }, [result]);
 
   //when a player chooses the square have it play either an X or an O
   //based on whose turn it is. Don't allow a square to be changed if
@@ -66,9 +73,17 @@ function App() {
 
       let foundWinningPattern = true;
       currentPattern.forEach((index) => {
+        console.log(`board[${index}]: `, board[index]);
+        console.log("firstPlayer: ", firstPlayer);
+        console.log(
+          `board[${index}] !== ${firstPlayer}`,
+          board[index] !== firstPlayer
+        );
         if (board[index] !== firstPlayer) {
           foundWinningPattern = false;
         }
+
+        console.log("foundWinningPattern: ", foundWinningPattern);
       });
 
       if (foundWinningPattern) {
@@ -77,6 +92,8 @@ function App() {
     });
   };
 
+  //if all the squares are filled up and we already checked for a winner
+  //then we have a tie.
   var checkIfTie = () => {
     let filled = true;
     board.forEach((square) => {
@@ -90,13 +107,28 @@ function App() {
     }
   };
 
-  const restartGame = () => {
+  //restart the game by resetting the board to blanks and
+  //setting player.
+  var restartGame = () => {
     setBoard(["", "", "", "", "", "", "", "", ""]);
     setPlayer(Ecks);
   };
 
+  /*
+  Each row has 3 squares
+  there are 3 rows
+  the value in a square it value of X or O 
+  in that position of the array that represents the board.
+  Choosing a square is activated by a click (see the component Square),
+  which determines whether to place an X or an O based on whose turn it is
+  */
   return (
     <div className="App">
+      <div>
+        <button id="btnRestart" onClick={restartGame}></button>
+      </div>
+      <br />
+      <br />
       <div className="board">
         <div className="row">
           <Square
