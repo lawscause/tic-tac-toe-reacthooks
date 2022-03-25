@@ -124,8 +124,6 @@ function App() {
   */
   return (
     <div className="App">
-      <h1>Tic Tac Toe</h1>
-      <br />
       <div className="board">
         <div className="row">
           <Square
